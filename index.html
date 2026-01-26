@@ -371,6 +371,55 @@
 
                 $("parish").addEventListener("change", updateDaAndDistrict);
 
+                //JSON Objection loader
+                let objectionLibrary = [];
+
+                fetch("./objections.json")
+                    .then(res => res.json())
+                    .then(data => {
+                        objectionLibrary = data;
+
+                        const sel = $("bureauObjectionPreset");
+                        data.forEach(item => {
+                            const opt = document.createElement("option");
+                            opt.value = item.id;
+                            opt.textContent = item.label;
+                            sel.appendChild(opt);
+                        });
+                    })
+                    .catch(err => {
+                        console.error("Could not load objections.json", err);
+                    });
+
+                $("addBureauObjectionBtn").addEventListener("click", () => {
+                    const chosenId = $("bureauObjectionPreset").value;
+                    if (!chosenId) return;
+
+                    const found = objectionLibrary.find (x => x.id === chosenId);
+                    if (!found) return;
+
+                    const box = $("bureauObjectionText");
+                    const chunk = found.text.trim();
+
+                    //Append with spacing
+                    box.value = box.value.trim()
+                        ? box.value.trim() + "\n\n" + chunk
+                        : chunk;
+                });
+
+                $("clearBureauObjectionBtn").addEventListener("click", () => {
+                    box.value = "";
+                    chosenId.value = "";
+                });
+
+                $("bureauObjectionPreset").addEventListener("change", () => {
+                    if (found) {
+                        box.value = found.text;
+                        //auto-switch radio to opposition
+                        document.querySelector('input[name="bureauResponse"][value="opposition"]').checked = true;
+                    }
+                });
+
                 //Template upload handler
                 let templateContent = null;
             
