@@ -391,15 +391,15 @@
                         console.error("Could not load objections.json", err);
                     });
 
+                const box = $("bureauObjectionText");
+                const chunk = found.text.trim();
+                const chosenId = $("bureauObjectionPreset").value;
+                const found = objectionLibrary.find (x => x.id === chosenId);
+
                 $("addBureauObjectionBtn").addEventListener("click", () => {
-                    const chosenId = $("bureauObjectionPreset").value;
                     if (!chosenId) return;
 
-                    const found = objectionLibrary.find (x => x.id === chosenId);
                     if (!found) return;
-
-                    const box = $("bureauObjectionText");
-                    const chunk = found.text.trim();
 
                     //Append with spacing
                     box.value = box.value.trim()
