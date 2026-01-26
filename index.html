@@ -135,6 +135,17 @@
                         <input id="bureauNoOppositionText" name="bureauNoOppositionText" type="text" value="The Bureau does not oppose this motion for expungement." />
                     </div>
                     <div>
+                        <label for="bureauObjectionPreset">Bureau Objections</label>
+                        <div class="row">
+                            <select id="bureauObjectionPreset" style="flex: 1;">
+                                <option value="">Select an objection (optional)</option>
+                            </select>
+                            <button id="addBureauObjectionBtn" type="button" style="width:auto; padding:10px 14px; border-radius:10px">Add</button>
+                            <button id="clearBureauObjectionBtn" type="button" style="width:auto; padding:10px 14px; border-radius:10px; background:#6b7280;">Clear</button>
+                        </div>
+                        <div class="tiny">Click "Add" to append the selected objection into the box below. Click "Clear" to clear the box.</div>
+                    </div>
+                    <div>
                         <label for="bureauObjectionText">Bureau Objection Text (only used if opposing)</label>
                         <textarea id="bureauObjectionText" name="bureauObjectionText" placeholder="Enter the complete objection text here..."></textarea>
                     </div>
