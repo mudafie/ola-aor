@@ -284,7 +284,7 @@
 
                 if (p && parishData[p]) {
                     const dist = parishData[p].district || "";
-                    hint.textContent = '✓ ${dist} Judicial District Court';
+                    hint.textContent = `✓ ${dist} Judicial District Court`;
                     hint.style.display = dist ? "block" : "none";
                 } else {
                     hint.style.display = "none";
@@ -318,7 +318,7 @@
 
                         if (e.properties?.errors?.length) {
                             e.properties.errors.forEach((err, i) => {
-                            console.error('Render error #${i + 1}:', err.properties?.explanation || err);
+                            console.error(`Render error #${i + 1}:`, err.properties?.explanation || err);
                             });
                         }
                         throw e;
@@ -336,7 +336,7 @@
 
                     if (e.properties && Array.isArray(e.properties.errors)) {
                         e.properties.errors.forEach((err, i) => {
-                            console.error('Error ${i + 1}:', err);
+                            console.error(`Error ${i + 1}:`, err);
                             if (err.properties && err.properties.explanation) {
                                 console.error("Explanation:", err.properties.explanation);
                             }
@@ -456,7 +456,7 @@
                     const reader = new FileReader();
                     reader.onload = (evt) => {
                         templateContent = evt.target.result; //ArrayBuffer
-                        status.textContent = '✓ Loaded template: ${file.name}';
+                        status.textContent = `✓ Loaded template: ${file.name}`;
                         status.style.color = "#065f46";
                         $("generateBtn").disabled = false;
                     };
@@ -515,10 +515,10 @@
 
                     if (defenseRecipient === "defendant") {
                         //If pro se, it reads cleaner as "Defendant: [Name], [Address]"
-                        data.defenseServiceText = defenseAddr ? '${defenseName}, ${defenseAddr}' : {defenseName};
+                        data.defenseServiceText = defenseAddr ? `${defenseName}, ${defenseAddr}` : {defenseName};
                     } else {
                         //Counsel, same format already used
-                        data.defenseServiceText = defenseAddr ? '${defenseName}, ${defenseAddr}' : {defenseName};
+                        data.defenseServiceText = defenseAddr ? `${defenseName}, ${defenseAddr}` : {defenseName};
                     }
 
                 //Control which sections show
@@ -571,7 +571,7 @@
                     const safeDocket = data.docketNumber.replace(/\s+/g, "_").replace(/[^\w\-]/g, "");
                     const safeParish = data.parish.replace(/\s+/g, "_").replace(/[^\w\-]/g, "");
                     
-                    const filename = 'Affidavit of Response - ${safeFile} ${safeLog} ${safeName} ${safeDocket} ${safeParish} ${responseStatus}.docx';
+                    const filename = `Affidavit of Response - ${safeFile} ${safeLog} ${safeName} ${safeDocket} ${safeParish} ${responseStatus}.docx`;
 
                     saveAs(blob, filename);
                     status.textContent = "Generated and downloaded: " + filename;
