@@ -291,6 +291,8 @@
                 }
             }
 
+            data.parish = parish === "Orleans" ? `${parish} DISTRICT` : `${parish} JUDICIAL DISTRICT`;
+
             function generateDocx(templateArrayBuffer, data) {
                 try {
                     const PizZipLib = window.PizZip;
