@@ -553,14 +553,23 @@
                 }
 
                 // Determine if showing no opposition box
-                let showNoOpp = data.bureauNoOpposition;
-                let noOpText = data.bureauNoOppositionText || "The Bureau does not oppose this motion for expungement.";
+                const bureauResponse = getRadio("bureauResponse");
 
-                data.showNoOppositionBox = showNoOpp;
-                data.noOppositionText = noOpText;
+                data.bureauNoOpposition = bureauResponse === "no-opposition";
+                data.bureauOpposition = bureauResponse === "opposition";
+
+                data.showNoOppositionBox = data.bureauNoOpposition;
+
+                data.noOppositionText = data.bureauNoOppositionText?.trim() || "The Bureau does not oppose this motion for expungement.";
 
                 //Determine opposition status for filename
                 let responseStatus = data.bureauOpposition ? "Opposition" : "NoOpposition";
+
+                console.log("DOCX DATA CHECK", {
+                    bureauNoOpposition: data.bureauNoOpposition,
+                    showNoOppositionBox: data.showNoOppositionBox,
+                    noOppositionText: data.noOppositionText
+                })
 
                 try {
                     const blob = await generateDocx(templateContent, data);
