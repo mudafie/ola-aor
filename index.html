@@ -291,7 +291,7 @@
                 }
             }
 
-            data.parish = parish === "Orleans" ? `${parish} DISTRICT` : `${parish} JUDICIAL DISTRICT`;
+            data.district = parish === "Orleans" ? `${district} DISTRICT` : `${district} JUDICIAL DISTRICT`;
 
             function generateDocx(templateArrayBuffer, data) {
                 try {
