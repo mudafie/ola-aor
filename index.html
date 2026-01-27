@@ -291,8 +291,6 @@
                 }
             }
 
-            data.district = parish === "Orleans" ? `${district} DISTRICT` : `${district} JUDICIAL DISTRICT`;
-
             function generateDocx(templateArrayBuffer, data) {
                 try {
                     const PizZipLib = window.PizZip;
@@ -418,7 +416,7 @@
 
                 $("clearBureauObjectionBtn").addEventListener("click", () => {
                     box.value = "";
-                    chosenId.value = "";
+                    preset.value = "";
                 });
 
                 preset.addEventListener("change", () => {
