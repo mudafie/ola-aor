@@ -489,7 +489,6 @@
                         division: $("division").value.trim(),
                         parish: $("parish").value,
                         parishUpper: $("parish").value ? $("parish").value.toUpperCase() : "",
-                        district: $("parish").value && parishData[$("parish").value] ? parishData[$("parish").value].district : "",
                              
                         bureauResponse: getRadio("bureauResponse"),
                         bureauNoOpposition: getRadio("bureauResponse") === "no-opposition",
@@ -504,6 +503,12 @@
 
                         respondingParty: respondingParty,
                     };
+
+                    // Setting conditional to input CRIMINAL DISTRICT for Orleans or JUDICIAL DISTRICT for everywhere else
+                    const parish = $("parish").value;
+                    const rawDistrict = parishData[parish]?.district || "";
+
+                    data.district = parish === "Orleans" ? `${rawDistrict} DISTRICT` : `${rawDistrict} JUDICIAL DISTRICT`;
 
                     const defenseRecipient = $("defenseRecipient").value; //"counsel" or "defendant"
 
