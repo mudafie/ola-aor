@@ -284,7 +284,7 @@
 
                 if (p && parishData[p]) {
                     const dist = parishData[p].district || "";
-                    hint.textContent = district = parish === "Orleans" ? `✓ ${dist} District` : `✓ ${dist} Judicial District`;
+                    hint.textContent = parish === "Orleans" ? `✓ ${dist} District` : `✓ ${dist} Judicial District`;
                     hint.style.display = dist ? "block" : "none";
                 } else {
                     hint.style.display = "none";
