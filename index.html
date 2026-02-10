@@ -8,82 +8,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.42.3/docxtemplater.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
         <link rel="icon" href="./favicon.png">
-        <style>
-            body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; background: #f7f7f8; 
-                position: relative; overflow-x: hidden;
-            }
-            /* Background image layer */
-            body::before {
-                content: "";
-                position: fixed;
-                inset: 0;
-                background-image: url("./ola-seal.png");
-                background-repeat: no-repeat;
-                background-size: 1500px 1500px;
-                background-position: center 30%;
-                opacity: 0.10;
-                pointer-events: none;
-                z-index: -2;
-            }
-            /* Light overlay to keep text readable */
-            body::after{
-                content: "";
-                position: fixed;
-                inset: 0;
-                background: rgba(247,247,248.0.92);
-                pointer-events: none;
-                z-index: -1;
-            }
-            .wrap { max-width: 980px; margin: 0 auto; }
-            .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 18px; margin-bottom: 14px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-            h1 { margin: 0 0 6px; font-size: 22px; }
-            .muted { color: #4b5563; font-size: 13px; margin: 0; }
-            label { display: block; font-size: 13px; color: #374151; margin-bottom: 6px; }
-            input[type="text"], input[type="email"], input[type="date"], select, textarea {
-                width: 100%; padding: 10px 10px; border: 1px solid #d1d5db; border-radius: 10px; font-size: 14px; background: #fff;
-            }
-            /* Fix overlapping/overflowing inputs and textareas */
-            *, *::before, *::after {
-                box-sizing: border-box;
-            }
-            input, select, textarea {
-                max-width: 100%;
-            }
-            textarea { resize: vertical; min-height: 120px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-            .grid { display: grid; gap: 12px; }
-            .grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .grid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-            @media (max-width: 860px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
-            .row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-            .radio { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; }
-            .radio input { transform: translateY(1px); }
-            button {
-                width: 100%; padding: 14px 14px; border: none; border-radius: 12px;
-                background: #2563eb; color: #fff; font-weight: 700; font-size: 16px; cursor: pointer;
-            }
-            button:hover { background: #1d4ed8; }
-            .ok { color: #065f46; font-size: 13px; margin-top: 6px; }
-            .warn { color: #92400e; font-size: 13px; margin-top: 6px; }
-            .tiny { font-size: 12px; color: #6b7280; }
-            .divider { height: 1px; background: #e5e7eb; margin: 14px 0; }
-        </style>
+        <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
-        <div class="wrap">
-            <div class="card">
-                <h1>Louisiana Article 990 - Affidavit of Response Generator</h1>
-                <p class="muted">This runs entirely in your browser. It generates an .docx file.</p>
-            </div>
-
-            <div class="card">
+        <header class="card">
+            <h1>Louisiana Article 990 - Affidavit of Response Generator</h1>
+            <p class="muted">This runs entirely in your browser. It generates an .docx file.</p>
+        </header>
+        <main class="wrap">
+            <section class="card">
                 <h2 style="margin:0 0 10px; font-size:16px;">Template</h2>
                 <label for="templateFile">Upload Word Template (.docx)</label>
                 <input id="templateFile" type="file" accept=".docx" />
                 <div class="tiny">Upload your .docx template with {placeholders} one time. It will be remembered.</div>
                 <div id="templateStatus" class="tiny" style="margin-top:6px;"></div>
-            </div>
+            </section>
 
-            <div class="card">
+            <section class="card">
                 <h2 style="margin:0 0 10px; font-size:16px;">File Information</h2>
                 <div class="grid grid2">
                     <div>
@@ -95,9 +36,9 @@
                         <input id="logNumber" name="logNumber" type="text" placeholder="e.g., EXP-123456" />
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="card">
+            <section class="card">
                 <h2 style="margin:0 0 10px; font-size:16px;">Case Caption</h2>
                 <div class="grid grid2">
                     <div>
@@ -121,9 +62,9 @@
                         <input id="division" name="division" type="text" placeholder="Leave blank if none" />
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="card" id="section-bureau">
+            <section class="card" id="section-bureau">
                 <h2 style="margin:0 0 10px; font-size:16px;">Louisiana Bureau Response</h2>
                 <div class="row" style="margin-bottom:10px;">
                     <label class="radio"><input type="radio" name="bureauResponse" value="no-opposition" checked> No Opposition</label>
@@ -150,9 +91,9 @@
                         <textarea id="bureauObjectionText" name="bureauObjectionText" placeholder="Enter the complete objection text here..."></textarea>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="card">
+            <section class="card">
                 <h2 style="margin:0 0 10px; font-size:16px;">Please Serve</h2>
                 <div class="grid grid2">
                     <div>
@@ -182,14 +123,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="card">
+            <section class="card">
                 <button id="generateBtn" type="button">Generate DOCX Document</button>
                 <div id="status" class="tiny" style="margin-top:10px;"></div>
                 <div class="warn">Upload a template first, then fill out the form and click generate!</div>
-            </div>
-        </div>
+            </section>
+        </main>
 
         <script>
             const parishData = {
